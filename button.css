@@ -27,8 +27,17 @@
 .button {
     display: flex;
     justify-content: center;
+    transition: background-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent; /* Убирает серый highlight на iOS */
+    touch-action: manipulation; /* Улучшает отзывчивость на тач-устройствах */
 }
     
+.button:active {
+    background-color: #a0142b; /* Колір фону при натисканні */
+    transition: none;
+    transition-duration: 0s;
+}
+
 .button--active {
     background-color: #a0142b !important;
     transition: none !important;
