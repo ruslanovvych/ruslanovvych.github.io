@@ -27,11 +27,6 @@
 .button {
     display: flex;
     justify-content: center;
-    transition: background-color 0.3s ease; /* Плавна зміна кольору */
-}
-    
-.button:hover {
-background-color: #d01d3e; /* Колір фону при наведенні */
 }
     
 .button:active {
@@ -74,10 +69,11 @@ transition: none;
     padding: 0 20px;
     border-radius: 12px;
     transition: 
-        max-height 0.3s ease, 
-        opacity 0.3s ease, 
-        transform 0.3s ease,
-        padding 0.3s ease;
+        max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.4s ease-out 0.1s,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
+        padding 0.5s ease;
+    will-change: transform, opacity, max-height; /* Подсказка для браузера */
 }
 
 .btn-content.visible {
@@ -86,7 +82,6 @@ transition: none;
     transform: translateY(0);
     padding: 0 20px;
     margin-bottom: 12px;
-    
 }
 
 .arrow {
