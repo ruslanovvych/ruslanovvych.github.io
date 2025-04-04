@@ -1,0 +1,101 @@
+.button, .btn-rules {
+    width: 300px; /* Фіксована ширина кнопок */
+    height: 25px;
+    padding: 10px 20px; /* Внутрішні відступи */
+    align-items: center;
+
+    background-color: rgba(34, 39, 46, 0.7);
+    border: 1px solid rgb(64, 72, 87);
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.button-container, .btn-block {
+    display: flex;
+    flex-direction: column; /* Розташування кнопок вертикально */
+    align-items: center; /* Вирівнювання по центру */
+    gap: 10px;
+}
+
+
+/*************************************************************************************************************************/
+
+
+.button {
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Плавна зміна кольору */
+}
+    
+.button:hover {
+background-color: #d01d3e; /* Колір фону при наведенні */
+}
+    
+.button:active {
+background-color: #a0142b; /* Колір фону при натисканні */
+transition: none;
+}
+
+@media (min-width: 768px) {
+    .button-container {
+        flex-direction: row; /* Горизонтально на ПК */
+        flex-wrap: wrap; /* Дозволяє кнопкам переходити на новий рядок */
+        justify-content: center; /* Вирівнювання по центру */
+    }
+        
+    .button {
+        flex: 1 1 45%; /* Кнопки займають 45% ширини контейнера */
+        max-width: 45%; /* Максимальна ширина кнопки */
+    }
+}
+
+
+/*************************************************************************************************************************/
+
+
+.btn-rules {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2px;
+}
+
+.btn-content {
+    background-color: rgba(34, 39, 46, 0.7);
+    border: 1px solid rgb(64, 72, 87);
+    width: 300px;
+    
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    padding: 0 20px;
+    border-radius: 12px;
+    transition: 
+        max-height 0.3s ease, 
+        opacity 0.3s ease, 
+        transform 0.3s ease,
+        padding 0.3s ease;
+}
+
+.btn-content.visible {
+    max-height: 3000px; 
+    opacity: 1;
+    transform: translateY(0);
+    padding: 0 20px;
+    margin-bottom: 12px;
+    
+}
+
+.arrow {
+    width: 15px; /* Розмір зображення */
+    height: 15px;
+    vertical-align: middle; /* Вирівнювання по центру тексту */
+    transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+    transform: rotate(90deg);
+}
