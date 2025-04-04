@@ -71,15 +71,24 @@ function copyHiddenText(element) {
     
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
-            // Временный эффект подсветки с плавным исчезновением
-            element.style.transition = 'color 0.5s ease';
-            element.style.color = '#d01d3e';
-            
+            // Сохраняем исходные стили текста
+            const originalColor = element.style.color;
+            const originalTransition = element.style.transition;
+
+            // 1. Мгновенное изменение цвета текста (как :active)
+            element.style.transition = 'none';
+            element.style.color = '#d01d3e'; // Ярко-красный (как в первом варианте)
+
+            // 2. Через 100мс включаем плавный переход обратно
             setTimeout(() => {
-                element.style.color = '';
-                // Убираем transition после завершения анимации
-                setTimeout(() => element.style.transition = '', 500);
-            }, 1000);
+                element.style.transition = 'color 0.7s ease';
+                element.style.color = originalColor || ''; // Возвращаем исходный цвет
+
+                // 3. Через 0.7s убираем transition (если не нужен)
+                setTimeout(() => {
+                    element.style.transition = originalTransition || '';
+                }, 700);
+            }, 100);
         })
         .catch(err => {
             console.error('Помилка копіювання: ', err);
