@@ -10,6 +10,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Добавляем для всех кнопок
+document.querySelectorAll('.button').forEach(btn => {
+    // Для touch-устройств
+    btn.addEventListener('touchstart', () => {
+        btn.classList.add('button--active');
+    });
+    
+    btn.addEventListener('touchend', () => {
+        btn.classList.remove('button--active');
+    });
+    
+    // Фикс для iOS
+    btn.addEventListener('touchcancel', () => {
+        btn.classList.remove('button--active');
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     checkHashAndToggle(); // Проверяем хэш при загрузке
     window.addEventListener("hashchange", checkHashAndToggle); // И при изменении
@@ -39,15 +56,6 @@ function checkHashAndToggle() {
     }
 }
 
-document.querySelectorAll('.button').forEach(btn => {
-    btn.addEventListener('touchstart', () => {
-        btn.classList.add('button--active');
-    });
-    
-    btn.addEventListener('touchend', () => {
-        btn.classList.remove('button--active');
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const button = document.getElementById('myButton');
