@@ -32,7 +32,7 @@ header {
         radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.2), transparent 40%),
         #0f0f15;
     background-size: 200% 200%;
-    animation: gentleFlow 8s linear infinite;
+    animation: gentleFlow 20s linear infinite;
 }
 
 @keyframes gentleFlow {
