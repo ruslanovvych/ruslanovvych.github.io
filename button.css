@@ -62,22 +62,26 @@ transition: none;
     border: 1px solid rgb(64, 72, 87);
     width: 300px;
     
-    max-height: 0;
+    /* Начальное состояние */
+    height: 0;
     opacity: 0;
-    overflow: hidden;
     transform: translateY(-10px);
-    padding: 0 20px;
+    padding: 0;
+    margin: 0;
     border-radius: 12px;
-    transition: 
-        max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.4s ease-out 0.1s,
-        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s,
-        padding 0.5s ease;
-    will-change: transform, opacity, max-height; /* Подсказка для браузера */
+    overflow: hidden;
+    
+    /* Анимация */
+    transition:
+        height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease 0.1s,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s ease;
 }
 
 .btn-content.visible {
-    max-height: 3000px; 
+    height: auto; /* Или фиксированная высота, если знаете точное значение */
+    min-height: 0; /* Предотвращает артефакты в некоторых браузерах */
     opacity: 1;
     transform: translateY(0);
     padding: 0 20px;
