@@ -25,14 +25,7 @@ header {
     border-radius: 10px;
     text-align: left;
     border: 1px solid rgba(64, 72, 87);
-
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(83, 192, 255, 0.1), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(29, 84, 114, 0.1), transparent 40%),
-        radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.1), transparent 40%),
-        #0f0f15;
-    background-size: 200% 200%;
-    animation: gentleFlow 20s linear infinite;
+    background: rgba(21, 24, 30);
 }
 
 @keyframes gentleFlow {
