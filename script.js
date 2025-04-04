@@ -71,12 +71,18 @@ function copyHiddenText(element) {
     
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
-        // Временный эффект подсветки
-        element.style.color = '#d01d3e';
-        setTimeout(() => element.style.color = '', 1000);
+            // Временный эффект подсветки с плавным исчезновением
+            element.style.transition = 'color 0.5s ease';
+            element.style.color = '#d01d3e';
+            
+            setTimeout(() => {
+                element.style.color = '';
+                // Убираем transition после завершения анимации
+                setTimeout(() => element.style.transition = '', 500);
+            }, 1000);
         })
         .catch(err => {
-        console.error('Помилка копіювання: ', err);
-        alert('Не вдалося скопіювати текст');
-    });
+            console.error('Помилка копіювання: ', err);
+            alert('Не вдалося скопіювати текст');
+        });
 }
