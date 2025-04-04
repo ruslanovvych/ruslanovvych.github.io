@@ -110,5 +110,5 @@
 }
 
 .arrow.rotate {
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
 }
