@@ -39,6 +39,16 @@ function checkHashAndToggle() {
     }
 }
 
+document.querySelectorAll('.button').forEach(btn => {
+    btn.addEventListener('touchstart', () => {
+        btn.classList.add('button--active');
+    });
+    
+    btn.addEventListener('touchend', () => {
+        btn.classList.remove('button--active');
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const button = document.getElementById('myButton');
     button.addEventListener('click', function(e) {
