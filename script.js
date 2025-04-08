@@ -97,20 +97,28 @@ function copyHiddenText(element) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const toggleButton = document.getElementById('theme-toggle');
-    if (!toggleButton) {
-      console.error("Кнопка не знайдена!");
-      return;
-    }
-  
     const themeLink = document.getElementById('theme-stylesheet');
     const savedTheme = localStorage.getItem('theme') || 'light';
-    themeLink.href = savedTheme + '.css';
   
-    toggleButton.addEventListener('click', () => {
-      const currentTheme = themeLink.href.includes('light') ? 'light' : 'dark';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      themeLink.href = newTheme + '.css';
-      localStorage.setItem('theme', newTheme);
-    });
-});
+    // Враховує шлях відносно HTML-файлу
+    let path = '';
+    if (window.location.pathname.includes('../')) {
+      path = 'dark.css';
+    } else {
+      path = '../dark.css';
+    }
+  
+    // Встановлюємо правильну тему
+    themeLink.href = savedTheme === 'dark' ? path : path.replace('dark', 'light');
+  
+    const toggleButton = document.getElementById('theme-toggle');
+    if (toggleButton) {
+      toggleButton.addEventListener('click', () => {
+        const isLight = themeLink.href.includes('light');
+        const newTheme = isLight ? 'dark' : 'light';
+        const newPath = path.replace('dark', newTheme).replace('light', newTheme);
+        themeLink.href = newPath;
+        localStorage.setItem('theme', newTheme);
+      });
+    }
+  });
