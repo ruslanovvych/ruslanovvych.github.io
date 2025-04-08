@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кнопка</title>
+  <style>
+    .button {
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transform: scale(1);
+      transition: transform 0.7s ease, background-color 0.7s ease; /* Плавное восстановление */
+    }
+
+    .pressed {
+      transform: scale(0.9); /* Резкое уменьшение */
+      background-color: #000000; /* Резкое изменение цвета */
+      transition: none; /* Без анимации при нажатии */
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button" id="myButton">Натисни мене</button>
+
+  <script>
+    const btn = document.getElementById('myButton');
+
+    const press = () => {
+      btn.classList.add('pressed');
+    };
+
+    const release = () => {
+      btn.classList.remove('pressed');
+    };
+
+    btn.addEventListener('mousedown', press);
+    btn.addEventListener('mouseup', release);
+    btn.addEventListener('mouseleave', release);
+
+    btn.addEventListener('touchstart', press);
+    btn.addEventListener('touchend', release);
+  </script>
+
+</body>
+</html>
