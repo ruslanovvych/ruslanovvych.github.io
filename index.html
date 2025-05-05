@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кристинка-мандаринка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #deb8e6;
+            flex-direction: column;
+            margin: 0;
+        }
+        
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .loader {
+            display: flex;
+        }
+        
+        .heart {
+            color: #deb8e6;
+            font-size: 30px;
+            margin: 0 5px;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        .heart:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .heart:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            color: #d6336c;
+            font-style: bold;
+            justify-content: center;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .message {
+            font-size: 24px;
+            color: #d6336c;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        h2 {
+            margin: 0;
+            color: #d6336c;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .img-container {
+            justify-content: center;
+            border-radius: 20px; /* закруглённые края */
+            border: 1px solid #d6336c; /* обводка */
+            width: auto; /* пример ширины */
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container" id="loader-container">
+        <div class="loader" id="loader">
+            <div class="heart">❤️</div>
+            <div class="heart">❤️</div>
+            <div class="heart">❤️</div>
+        </div>
+        <div class="loading-text" id="loading-text">удаляю своих девочек</div>
+    </div>
+    
+    <div class="message" id="message">
+        <h2>👑 ТЫ моя Принцесса 👑</h2>
+        <h3>С днем принцессы тебя, моя булочка.</h3>
+        <img src="korgi.jpeg" class =img-container alt="Картинка с корги">
+
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('loader-container').classList.add('hidden');
+            document.getElementById('message').style.opacity = '1';
+        }, 3000);
+    </script>
+</body>
+</html>
