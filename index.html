@@ -1,107 +1,113 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кристинка-мандаринка</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #deb8e6;
-            flex-direction: column;
-            margin: 0;
-        }
-        
-        .loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .loader {
-            display: flex;
-        }
-        
-        .heart {
-            color: #deb8e6;
-            font-size: 30px;
-            margin: 0 5px;
-            animation: bounce 1s infinite alternate;
-        }
-        
-        .heart:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .heart:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-15px); }
-        }
-        
-        .loading-text {
-            margin-top: 15px;
-            color: #d6336c;
-            font-style: bold;
-            justify-content: center;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .message {
-            font-size: 24px;
-            color: #d6336c;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 1s;
-        }
-        
-        h2 {
-            margin: 0;
-            color: #d6336c;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .img-container {
-            justify-content: center;
-            border-radius: 20px; /* закруглённые края */
-            border: 1px solid #d6336c; /* обводка */
-            width: auto; /* пример ширины */
-        }
-    </style>
+    <title>TRUTH UKRAINIAN BOTIK - Інструкція користування</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="loader-container" id="loader-container">
-        <div class="loader" id="loader">
-            <div class="heart">❤️</div>
-            <div class="heart">❤️</div>
-            <div class="heart">❤️</div>
+    <div class="container">
+
+        <main class="main-content">
+            <section class="hero-section">
+                <h1 class="main-title">Truth Ukrainian Botik</h1>
+                <p class="hero-description">Ботік з яким можна пограти і поговорити. Бот працює тільки в групах.</p>
+            </section>
+
+            <section class="features-section">
+                <h2 class="section-title">Можливості</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Правда або Дія</h3>
+                        <p>Класична гра Truth or Dare для веселощів у групі</p>
+                    </div>
+                    <div class="feature-card">
+
+                        <h3>Правда або Фейк</h3>
+                        <p>Відгадуйте, що правда, а що вигадка</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Спілкування</h3>
+                        <p>Поговоріть з ботом та отримайте цікаві відповіді</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Глобальний рейтинг</h3>
+                        <p>Змагайтеся за перше місце в світовій таблиці лідерів</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="commands-section">
+                <h2 class="section-title">Основні команди</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <code>/gmstart</code>
+                        <p>Меню вибору гри</p>
+                    </div>
+                    <div class="command-card">
+                        <code>/gmstop</code>
+                        <p>Зупинити гру</p>
+                    </div>
+                    <div class="command-card">
+                        <code>/profile</code>
+                        <p>Ваш профіль та статистика</p>
+                    </div>
+                    <div class="command-card">
+                        <code>/todstats</code>
+                        <p>Статистика ПД в чаті</p>
+                    </div>
+                    <div class="command-card">
+                        <code>/tofstats</code>
+                        <p>Статистика ПФ в чаті</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="instructions-section">
+                <h2 class="section-title">Як користуватися</h2>
+                <div class="instructions-list">
+                    <div class="instruction-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Додайте бота в групу</h3>
+                            <p>Додайте <a href="https://t.me/truth_ukrainian_botik" target="_blank" class="bot-link">@truth_ukrainian_botik</a> до вашої Telegram групи</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Запустіть гру</h3>
+                            <p>Відправте /gmstart для вибору гри</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Виберіть гру</h3>
+                            <p>Оберіть "Правда або Дію" або "Правда або Фейк"</p>
+                        </div>
+                    </div>
+                    <div class="instruction-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Грайте та змагайтеся</h3>
+                            <p>Набирайте бали та піднімайтесь у рейтингу</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Truth Ukrainian Botik</p>
         </div>
-        <div class="loading-text" id="loading-text">удаляю своих девочек</div>
-    </div>
-    
-    <div class="message" id="message">
-        <h3>👑 ТЫ моя Принцесса 👑</h3>
-        <h4>С днем принцессы тебя, моя булочка.</h4>
-        <img src="korgi.jpeg" class =img-container alt="Картинка с корги">
+    </footer>
 
-    </div>
-
-    <script>
-        setTimeout(function() {
-            document.getElementById('loader-container').classList.add('hidden');
-            document.getElementById('message').style.opacity = '1';
-        }, 3000);
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
+</html> 
