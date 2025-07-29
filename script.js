@@ -1,5 +1,50 @@
+// Telegram Web App налаштування
+function initTelegramWebApp() {
+    if (window.Telegram && window.Telegram.WebApp) {
+        const tg = window.Telegram.WebApp;
+        
+        // Налаштування кольорів
+        tg.setHeaderColor('#000000');
+        tg.setBackgroundColor('#000000');
+        tg.setSecondaryBackgroundColor('#000000');
+        
+        // Налаштування розмірів
+        tg.setViewportHeight(window.innerHeight);
+        tg.setViewportWidth(window.innerWidth);
+        
+        // Налаштування теми
+        tg.setThemeParams({
+            bg_color: '#000000',
+            secondary_bg_color: '#000000',
+            text_color: '#FFD700',
+            hint_color: '#CCCCCC',
+            link_color: '#FFD700',
+            button_color: '#FF4444',
+            button_text_color: '#FFFFFF'
+        });
+        
+        // Розгортання на повну висоту (не повноекранний режим)
+        tg.expand();
+        
+        // Налаштування viewport
+        tg.setViewportHeight(window.innerHeight);
+        
+        // Готовність додатку
+        tg.ready();
+        
+        // Обробник зміни розміру вікна
+        window.addEventListener('resize', () => {
+            tg.setViewportHeight(window.innerHeight);
+            tg.setViewportWidth(window.innerWidth);
+        });
+    }
+}
+
 // Основні функції для інтерактивності
 document.addEventListener('DOMContentLoaded', function() {
+    // Ініціалізація Telegram Web App
+    initTelegramWebApp();
+    
     // Ініціалізація всіх функцій
     initInteractiveElements();
     initCommandCopy();

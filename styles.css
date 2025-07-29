@@ -25,6 +25,17 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    /* Telegram Web App інтеграція */
+    --tg-theme-bg-color: #000000;
+    --tg-theme-secondary-bg-color: #000000;
+    --tg-theme-text-color: #FFD700;
+    --tg-theme-hint-color: #CCCCCC;
+    --tg-theme-link-color: #FFD700;
+    --tg-theme-button-color: #FF4444;
+    --tg-theme-button-text-color: #FFFFFF;
+    /* Повноекранний режим без повноекранного */
+    min-height: 100vh;
+    width: 100%;
 }
 
 
@@ -33,9 +44,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    min-height: 100vh;
+    min-height: calc(100vh - 40px);
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 
@@ -51,8 +63,6 @@ body {
     margin-bottom: 60px;
     padding: 80px 20px;
     background: #000;
-    border-bottom: 4px solid var(--border-red);
-    border-top: 4px solid var(--border-red);
     position: relative;
     display: flex;
     flex-direction: column;
