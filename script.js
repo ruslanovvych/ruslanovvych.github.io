@@ -1,84 +1,15 @@
 // Основні функції для інтерактивності
 document.addEventListener('DOMContentLoaded', function() {
     // Ініціалізація всіх функцій
-    initAnimations();
-    initScrollEffects();
     initInteractiveElements();
-    initParticleEffect();
+    initCommandCopy();
     initTypingEffect();
 });
 
-// Анімації при завантаженні
-function initAnimations() {
-    // Анімація появи елементів
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Спостерігаємо за всіма картками та секціями
-    const animatedElements = document.querySelectorAll('.feature-card, .instruction-item, .command-card, .section-title');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Ефекти при скролі
-function initScrollEffects() {
-    let ticking = false;
-    
-    function updateOnScroll() {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.hero-section, .logo');
-        
-        parallaxElements.forEach(element => {
-            const speed = element.classList.contains('logo') ? 0.5 : 0.3;
-            const yPos = -(scrolled * speed);
-            element.style.transform = `translateY(${yPos}px)`;
-        });
-        
-        ticking = false;
-    }
-    
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateOnScroll);
-            ticking = true;
-        }
-    }
-    
-    window.addEventListener('scroll', requestTick);
-}
 
 // Інтерактивні елементи
 function initInteractiveElements() {
-    // Ефект ховера для карток
-    const cards = document.querySelectorAll('.feature-card, .command-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = this.classList.contains('feature-card') 
-                ? 'translateY(-10px) scale(1.02)' 
-                : 'scale(1.08)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-    
     // Ефект кліку для кнопок
     const buttons = document.querySelectorAll('.contact-link, .step-number');
     
@@ -105,83 +36,11 @@ function initInteractiveElements() {
     });
 }
 
-// Ефект частинок
-function initParticleEffect() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex = '1';
-    
-    document.body.appendChild(canvas);
-    
-    let particles = [];
-    const particleCount = 50;
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
-            this.opacity = Math.random() * 0.5 + 0.2;
-            this.color = `rgba(255, 215, 0, ${this.opacity})`;
-        }
-        
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-        }
-        
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-    
-    function initParticles() {
-        particles = [];
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-    
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        
-        requestAnimationFrame(animateParticles);
-    }
-    
-    resizeCanvas();
-    initParticles();
-    animateParticles();
-    
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initParticles();
-    });
-}
+
+
+
+
+
 
 // Ефект друкування тексту
 function initTypingEffect() {
@@ -207,26 +66,13 @@ function initTypingEffect() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    typeWriter();
+                    setTimeout(typeWriter, 500);
                     observer.unobserve(entry.target);
                 }
             });
         });
         
         observer.observe(title);
-    });
-}
-
-// Додаткові інтерактивні функції
-function addGlowEffect() {
-    const logo = document.querySelector('.logo');
-    
-    logo.addEventListener('mouseenter', function() {
-        this.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.5)';
-    });
-    
-    logo.addEventListener('mouseleave', function() {
-        this.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5)';
     });
 }
 
@@ -241,6 +87,17 @@ function initCommandCopy() {
         code.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+            
+            // Анімація копіювання
+            this.style.transform = 'scale(1.1)';
+            this.style.background = 'var(--accent-gold)';
+            this.style.color = 'var(--border-dark)';
+            
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+                this.style.background = 'var(--primary-dark)';
+                this.style.color = 'var(--accent-gold)';
+            }, 200);
             
             navigator.clipboard.writeText(this.textContent).then(() => {
                 // Показуємо повідомлення про успішне копіювання
