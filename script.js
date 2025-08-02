@@ -1,18 +1,80 @@
+// Анімований фон
+function initBackgroundAnimation() {
+    const canvas = document.getElementById("background-canvas");
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext("2d");
+    let bullets = [];
+    
+    // Встановлюємо розміри canvas
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    // Створюємо пулю
+    function spawnBullet() {
+        // Масив кольорів для частинок
+        const colors = [
+            { r: 255, g: 200, b: 0 },   // Жовтий
+            { r: 255, g: 100, b: 0 },   // Оранжевий
+            { r: 255, g: 50, b: 50 }    // Червоний
+        ];
+        
+        // Випадковий колір
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        bullets.push({
+            x: Math.random() * canvas.width,
+            y: canvas.height,
+            size: Math.random() * 3 + 2, // Розмір від 2 до 5 пікселів
+            speed: Math.random() * 2 + 1, // Швидкість від 1 до 3
+            trail: 6,
+            color: randomColor
+        });
+    }
+    
+    // Малюємо анімацію
+    function draw() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        bullets.forEach((b, i) => {
+            b.y -= b.speed;
+            
+            for (let t = 0; t < b.trail; t++) {
+                const yOffset = b.y + t * b.size;
+                const alpha = 1 - t / b.trail; // дальші — прозоріше
+                ctx.fillStyle = `rgba(${b.color.r}, ${b.color.g}, ${b.color.b}, ${alpha.toFixed(2)})`;
+                ctx.fillRect(b.x, yOffset, b.size, b.size);
+            }
+            
+            if (b.y < -b.trail * b.size) bullets.splice(i, 1);
+        });
+        
+        requestAnimationFrame(draw);
+    }
+    
+    // Ініціалізація
+    resizeCanvas();
+    setInterval(spawnBullet, 800); // Частинки кожні 800мс
+    draw();
+    
+    // Обробник зміни розміру вікна
+    window.addEventListener('resize', resizeCanvas);
+}
+
 // Telegram Web App налаштування
 function initTelegramWebApp() {
     if (window.Telegram && window.Telegram.WebApp) {
         const tg = window.Telegram.WebApp;
         
-        // Налаштування кольорів
-        tg.setHeaderColor('#000000');
-        tg.setBackgroundColor('#000000');
-        tg.setSecondaryBackgroundColor('#000000');
+        // Налаштування кольорів шапки та фону
+        tg.setHeaderColor('#000000'); // Чорний колір шапки
+        tg.setBackgroundColor('#000000'); // Чорний фон
+        tg.setSecondaryBackgroundColor('#000000'); // Вторинний фон
         
-        // Налаштування розмірів
-        tg.setViewportHeight(window.innerHeight);
-        tg.setViewportWidth(window.innerWidth);
-        
-        // Налаштування теми
+        // Налаштування теми для кращої інтеграції
         tg.setThemeParams({
             bg_color: '#000000',
             secondary_bg_color: '#000000',
@@ -26,22 +88,73 @@ function initTelegramWebApp() {
         // Розгортання на повну висоту (не повноекранний режим)
         tg.expand();
         
-        // Налаштування viewport
-        tg.setViewportHeight(window.innerHeight);
+        // Налаштування viewport для повного екрану
+        const setViewportSize = () => {
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            // Встановлюємо розміри viewport
+            tg.setViewportHeight(viewportHeight);
+            tg.setViewportWidth(viewportWidth);
+            
+            // Додатково налаштовуємо body для повного екрану
+            document.body.style.height = `${viewportHeight}px`;
+            document.body.style.width = `${viewportWidth}px`;
+            document.body.style.overflow = 'auto';
+            
+            // Налаштовуємо контейнер
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.minHeight = `${viewportHeight}px`;
+                container.style.height = '100%';
+            }
+            
+            // Оновлюємо розміри canvas фону
+            const canvas = document.getElementById("background-canvas");
+            if (canvas) {
+                canvas.width = viewportWidth;
+                canvas.height = viewportHeight;
+            }
+        };
+        
+        // Встановлюємо розміри одразу
+        setViewportSize();
         
         // Готовність додатку
         tg.ready();
         
         // Обробник зміни розміру вікна
-        window.addEventListener('resize', () => {
-            tg.setViewportHeight(window.innerHeight);
-            tg.setViewportWidth(window.innerWidth);
+        window.addEventListener('resize', setViewportSize);
+        
+        // Додаткові налаштування для кращої інтеграції
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setViewportSize, 100);
         });
+        
+        // Налаштування для мобільних пристроїв
+        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // Додаткові налаштування для мобільних
+            document.documentElement.style.height = '100%';
+            document.documentElement.style.overflow = 'hidden';
+            
+            // Запобігаємо збільшенню при фокусі на input
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.style.fontSize = '16px';
+            });
+        }
+        
+        console.log('Telegram WebApp ініціалізовано успішно');
+    } else {
+        console.log('Telegram WebApp не доступний');
     }
 }
 
 // Основні функції для інтерактивності
 document.addEventListener('DOMContentLoaded', function() {
+    // Ініціалізація анімованого фону
+    initBackgroundAnimation();
+    
     // Ініціалізація Telegram Web App
     initTelegramWebApp();
     
@@ -298,4 +411,53 @@ function initSmoothScroll() {
 }
 
 // Ініціалізація плавного скролу
-document.addEventListener('DOMContentLoaded', initSmoothScroll); 
+document.addEventListener('DOMContentLoaded', initSmoothScroll);
+
+// Функція для оновлення розмірів при зміні орієнтації
+function handleOrientationChange() {
+    if (window.Telegram && window.Telegram.WebApp) {
+        const tg = window.Telegram.WebApp;
+        
+        setTimeout(() => {
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            tg.setViewportHeight(viewportHeight);
+            tg.setViewportWidth(viewportWidth);
+            
+            // Оновлюємо розміри body
+            document.body.style.height = `${viewportHeight}px`;
+            document.body.style.width = `${viewportWidth}px`;
+            
+            // Оновлюємо контейнер
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.minHeight = `${viewportHeight}px`;
+            }
+            
+            console.log('Розміри оновлено після зміни орієнтації');
+        }, 300);
+    }
+}
+
+// Додаємо обробник зміни орієнтації
+window.addEventListener('orientationchange', handleOrientationChange);
+
+// Функція для перевірки та оновлення розмірів кожні 2 секунди (для надійності)
+function periodicViewportUpdate() {
+    if (window.Telegram && window.Telegram.WebApp) {
+        const tg = window.Telegram.WebApp;
+        const currentHeight = window.innerHeight;
+        const currentWidth = window.innerWidth;
+        
+        // Оновлюємо тільки якщо розміри змінилися
+        if (tg.viewportHeight !== currentHeight || tg.viewportWidth !== currentWidth) {
+            tg.setViewportHeight(currentHeight);
+            tg.setViewportWidth(currentWidth);
+            console.log('Періодичне оновлення розмірів viewport');
+        }
+    }
+}
+
+// Запускаємо періодичне оновлення
+setInterval(periodicViewportUpdate, 2000); 
