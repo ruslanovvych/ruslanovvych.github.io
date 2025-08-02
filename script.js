@@ -75,21 +75,25 @@ function initTelegramWebApp() {
         // Потім розгортаємо на весь екран
         tg.expand();
         
-        // Після цього налаштовуємо кольори
-        tg.setHeaderColor('#000000'); // Чорний колір шапки
-        tg.setBackgroundColor('#000000'); // Чорний фон
-        tg.setSecondaryBackgroundColor('#000000'); // Вторинний фон
-        
-        // Налаштування теми для кращої інтеграції
-        tg.setThemeParams({
-            bg_color: '#000000',
-            secondary_bg_color: '#000000',
-            text_color: '#FFD700',
-            hint_color: '#CCCCCC',
-            link_color: '#FFD700',
-            button_color: '#FF4444',
-            button_text_color: '#FFFFFF'
-        });
+        // Налаштування кольорів з затримкою (як в index 2)
+        setTimeout(() => {
+            tg.setHeaderColor('#000000'); // Чорний колір шапки
+            tg.setBackgroundColor('#000000'); // Чорний фон
+            tg.setSecondaryBackgroundColor('#000000'); // Вторинний фон
+            
+            // Налаштування теми для кращої інтеграції
+            tg.setThemeParams({
+                bg_color: '#000000',
+                secondary_bg_color: '#000000',
+                text_color: '#FFD700',
+                hint_color: '#CCCCCC',
+                link_color: '#FFD700',
+                button_color: '#FF4444',
+                button_text_color: '#FFFFFF'
+            });
+            
+            console.log('Кольори шапки встановлено з затримкою в основній функції');
+        }, 50);
         
         // Налаштування для займання всього екрану без повноекранного режиму
         const fullHeight = window.innerHeight;
@@ -149,6 +153,14 @@ function initTelegramWebApp() {
             setViewportSize();
             console.log('Фінальне оновлення розмірів');
         }, 500);
+        
+        // Додаткова перевірка кольорів шапки через 1 секунду
+        setTimeout(() => {
+            if (tg.setHeaderColor) {
+                tg.setHeaderColor('#000000');
+                console.log('Додаткова перевірка кольору шапки');
+            }
+        }, 1000);
         
         // Обробник зміни розміру вікна
         window.addEventListener('resize', setViewportSize);
