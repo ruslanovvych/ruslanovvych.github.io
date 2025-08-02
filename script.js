@@ -88,25 +88,38 @@ function initTelegramWebApp() {
         // Розгортання на повну висоту (не повноекранний режим)
         tg.expand();
         
-        // Налаштування viewport для повного екрану
+        // Налаштування для займання всього екрану без повноекранного режиму
+        const fullHeight = window.innerHeight;
+        const fullWidth = window.innerWidth;
+        
+        // Встановлюємо розміри viewport на весь екран
+        tg.setViewportHeight(fullHeight);
+        tg.setViewportWidth(fullWidth);
+        
+        console.log('Встановлено розміри на весь екран:', fullWidth, 'x', fullHeight);
+        
+        // Налаштування viewport для займання всього екрану
         const setViewportSize = () => {
             const viewportHeight = window.innerHeight;
             const viewportWidth = window.innerWidth;
             
-            // Встановлюємо розміри viewport
+            // Встановлюємо розміри viewport для Telegram WebApp (весь екран)
             tg.setViewportHeight(viewportHeight);
             tg.setViewportWidth(viewportWidth);
             
-            // Додатково налаштовуємо body для повного екрану
+            // Налаштовуємо body для займання всього екрану
             document.body.style.height = `${viewportHeight}px`;
             document.body.style.width = `${viewportWidth}px`;
             document.body.style.overflow = 'auto';
+            document.body.style.minHeight = `${viewportHeight}px`;
+            document.body.style.maxHeight = `${viewportHeight}px`;
             
             // Налаштовуємо контейнер
             const container = document.querySelector('.container');
             if (container) {
                 container.style.minHeight = `${viewportHeight}px`;
                 container.style.height = '100%';
+                container.style.maxHeight = `${viewportHeight}px`;
             }
             
             // Оновлюємо розміри canvas фону
@@ -115,10 +128,24 @@ function initTelegramWebApp() {
                 canvas.width = viewportWidth;
                 canvas.height = viewportHeight;
             }
+            
+            console.log('Viewport розміри оновлено (весь екран):', viewportWidth, 'x', viewportHeight);
         };
         
         // Встановлюємо розміри одразу
         setViewportSize();
+        
+        // Додаткове оновлення після готовності
+        setTimeout(() => {
+            setViewportSize();
+            console.log('Додаткове оновлення розмірів після готовності');
+        }, 100);
+        
+        // Додаткове оновлення через 500мс для надійності
+        setTimeout(() => {
+            setViewportSize();
+            console.log('Фінальне оновлення розмірів');
+        }, 500);
         
         // Готовність додатку
         tg.ready();
@@ -127,8 +154,20 @@ function initTelegramWebApp() {
         window.addEventListener('resize', setViewportSize);
         
         // Додаткові налаштування для кращої інтеграції
+        if (tg.MainButton) {
+            tg.MainButton.hide();
+        }
+        
+        if (tg.BackButton) {
+            tg.BackButton.hide();
+        }
+        
+        // Додаткові налаштування для кращої інтеграції
         window.addEventListener('orientationchange', () => {
-            setTimeout(setViewportSize, 100);
+            setTimeout(() => {
+                setViewportSize();
+                console.log('Оновлення розмірів після зміни орієнтації');
+            }, 300);
         });
         
         // Налаштування для мобільних пристроїв
