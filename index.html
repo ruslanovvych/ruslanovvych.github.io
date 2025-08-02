@@ -33,7 +33,13 @@
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
             
-            // Базові налаштування
+            // Спочатку викликаємо ready() - це обов'язково!
+            tg.ready();
+            
+            // Потім розгортаємо на весь екран
+            tg.expand();
+            
+            // Після цього налаштовуємо кольори
             tg.setHeaderColor('#000000');
             tg.setBackgroundColor('#000000');
             tg.setSecondaryBackgroundColor('#000000');
@@ -48,9 +54,6 @@
                 button_color: '#FF4444',
                 button_text_color: '#FFFFFF'
             });
-            
-            // Розгортання на весь екран
-            tg.expand();
             
             // Встановлення розмірів
             tg.setViewportHeight(window.innerHeight);

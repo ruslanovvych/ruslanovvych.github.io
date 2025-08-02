@@ -69,7 +69,13 @@ function initTelegramWebApp() {
     if (window.Telegram && window.Telegram.WebApp) {
         const tg = window.Telegram.WebApp;
         
-        // Налаштування кольорів шапки та фону
+        // Спочатку викликаємо ready() - це обов'язково!
+        tg.ready();
+        
+        // Потім розгортаємо на весь екран
+        tg.expand();
+        
+        // Після цього налаштовуємо кольори
         tg.setHeaderColor('#000000'); // Чорний колір шапки
         tg.setBackgroundColor('#000000'); // Чорний фон
         tg.setSecondaryBackgroundColor('#000000'); // Вторинний фон
@@ -84,9 +90,6 @@ function initTelegramWebApp() {
             button_color: '#FF4444',
             button_text_color: '#FFFFFF'
         });
-        
-        // Розгортання на повну висоту (не повноекранний режим)
-        tg.expand();
         
         // Налаштування для займання всього екрану без повноекранного режиму
         const fullHeight = window.innerHeight;
@@ -146,9 +149,6 @@ function initTelegramWebApp() {
             setViewportSize();
             console.log('Фінальне оновлення розмірів');
         }, 500);
-        
-        // Готовність додатку
-        tg.ready();
         
         // Обробник зміни розміру вікна
         window.addEventListener('resize', setViewportSize);
