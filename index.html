@@ -11,12 +11,54 @@
     <meta name="telegram-web-app-theme-color" content="#000000">
     <meta name="telegram-web-app-background-color" content="#000000">
     <meta name="telegram-web-app-secondary-background-color" content="#000000">
+    <meta name="telegram-web-app-text-color" content="#FFD700">
+    <meta name="telegram-web-app-hint-color" content="#CCCCCC">
+    <meta name="telegram-web-app-link-color" content="#FFD700">
+    <meta name="telegram-web-app-button-color" content="#FF4444">
+    <meta name="telegram-web-app-button-text-color" content="#FFFFFF">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Truth Ukrainian Botik">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Рання ініціалізація Telegram WebApp -->
+    <script>
+        // Рання ініціалізація Telegram WebApp
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            
+            // Базові налаштування
+            tg.setHeaderColor('#000000');
+            tg.setBackgroundColor('#000000');
+            tg.setSecondaryBackgroundColor('#000000');
+            
+            // Налаштування теми
+            tg.setThemeParams({
+                bg_color: '#000000',
+                secondary_bg_color: '#000000',
+                text_color: '#FFD700',
+                hint_color: '#CCCCCC',
+                link_color: '#FFD700',
+                button_color: '#FF4444',
+                button_text_color: '#FFFFFF'
+            });
+            
+            // Розгортання на весь екран
+            tg.expand();
+            
+            // Встановлення розмірів
+            tg.setViewportHeight(window.innerHeight);
+            tg.setViewportWidth(window.innerWidth);
+            
+            console.log('Рання ініціалізація Telegram WebApp завершена');
+        }
+    </script>
 </head>
 <body>
     <!-- Анімований фон -->

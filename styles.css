@@ -10,6 +10,15 @@
     --border-red: #cc3333;
     --border-dark: #333333;
     --pixel-size: 2px;
+    
+    /* Telegram WebApp змінні */
+    --tg-theme-bg-color: #000000;
+    --tg-theme-secondary-bg-color: #000000;
+    --tg-theme-text-color: #FFD700;
+    --tg-theme-hint-color: #CCCCCC;
+    --tg-theme-link-color: #FFD700;
+    --tg-theme-button-color: #FF4444;
+    --tg-theme-button-text-color: #FFFFFF;
 }
 
 /* Анімований фон */
@@ -32,19 +41,11 @@
 
 body {
     font-family: 'Orbitron', monospace;
-    background: #000;
+    background: var(--tg-theme-bg-color, #000);
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    /* Telegram Web App інтеграція */
-    --tg-theme-bg-color: #000000;
-    --tg-theme-secondary-bg-color: #000000;
-    --tg-theme-text-color: #FFD700;
-    --tg-theme-hint-color: #CCCCCC;
-    --tg-theme-link-color: #FFD700;
-    --tg-theme-button-color: #FF4444;
-    --tg-theme-button-text-color: #FFFFFF;
     /* Весь екран без повноекранного режиму */
     min-height: 100vh;
     height: 100vh;
