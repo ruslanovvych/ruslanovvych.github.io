@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Об'єднана статистика - Truth Ukrainian Botik</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            setTimeout(() => {
+                tg.setHeaderColor('#000000');
+                tg.setBackgroundColor('#000000');
+                tg.setThemeParams({
+                    bg_color: '#000000',
+                    text_color: '#FFD700',
+                    button_color: '#FF4444',
+                    button_text_color: '#FFFFFF'
+                });
+            }, 50);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="background-canvas" class="background-canvas"></canvas>
+    
+    <div class="container">
+        <main class="main-content">
+            <section class="game-detail-page">
+                <a href="index.html" class="back-link">← Назад до головної</a>
+                
+                <h1 class="game-title">📊 Об'єднана статистика</h1>
+                
+                <div class="game-description">
+                    <h2>Що це за функція?</h2>
+                    <p>Переглядайте статистику всіх ігор: локальну (для поточного чату) та глобальну (для всіх чатів). Змагайтеся за перше місце у рейтингах!</p>
+                </div>
+
+                <div class="game-rules">
+                    <h2>Як користуватися?</h2>
+                    <ol class="rules-list">
+                        <li><span>Відправте <code>/truthstats</code> у групі</span></li>
+                        <li>
+                            <div class="rules-content">
+                                <span>Оберіть тип статистики:</span>
+                                <ul>
+                                    <li><span>🍉 Кавунчики (локальна/глобальна)</span></li>
+                                    <li><span>🧠 Правда або Дія (локальна/глобальна)</span></li>
+                                    <li><span>⚖️ Правда або Фейк (локальна/глобальна)</span></li>
+                                    <li><span>🎭 Хто Я? (локальна/глобальна)</span></li>
+                                    <li><span>🃏 UNO (локальна/глобальна)</span></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><span>Переглядайте рейтинг гравців</span></li>
+                        <li><span>Змагайтеся за перше місце!</span></li>
+                    </ol>
+                </div>
+
+                <div class="game-features">
+                    <h2>Типи статистики</h2>
+                    <ul class="features-list">
+                        <li><span>🍉 <strong>Кавунчики</strong> - найбільші кавунчики, кількість зрощених</span></li>
+                        <li><span>🧠 <strong>Правда або Дія</strong> - кількість ігор, перемог, відповідей</span></li>
+                        <li><span>⚖️ <strong>Правда або Фейк</strong> - правильні відповіді, відсоток успішності</span></li>
+                        <li><span>🎭 <strong>Хто Я?</strong> - кількість ігор, вгаданих персонажів</span></li>
+                        <li><span>🃏 <strong>UNO</strong> - кількість ігор, перемог, очок</span></li>
+                        <li><span>✅ Локальна статистика - тільки для поточного чату</span></li>
+                        <li><span>🌍 Глобальна статистика - для всіх чатів разом</span></li>
+                    </ul>
+                </div>
+
+                <div class="game-commands">
+                    <h2>Команди</h2>
+                    <div class="commands-list">
+                        <div class="command-item">
+                            <code>/truthstats</code>
+                            <span>Вся статистика (об'єднана)</span>
+                        </div>
+                        <div class="command-item">
+                            <code>/profile</code>
+                            <span>Ваш профіль та статистика</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Truth Ukrainian Botik</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

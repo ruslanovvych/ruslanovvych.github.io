@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO - Truth Ukrainian Botik</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            setTimeout(() => {
+                tg.setHeaderColor('#000000');
+                tg.setBackgroundColor('#000000');
+                tg.setThemeParams({
+                    bg_color: '#000000',
+                    text_color: '#FFD700',
+                    button_color: '#FF4444',
+                    button_text_color: '#FFFFFF'
+                });
+            }, 50);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="background-canvas" class="background-canvas"></canvas>
+    
+    <div class="container">
+        <main class="main-content">
+            <section class="game-detail-page">
+                <a href="index.html" class="back-link">← Назад до головної</a>
+                
+                <h1 class="game-title">🃏 UNO 🃏</h1>
+                
+                <div class="game-description">
+                    <h2>Що це за гра?</h2>
+                    <p>Класична карткова гра UNO! Грайте з друзями, використовуйте спеціальні карти та вигравайте. Перший гравець, який позбувся всіх карт, виграє!</p>
+                </div>
+
+                <div class="game-rules">
+                    <h2>Як грати?</h2>
+                    <ol class="rules-list">
+                        <li><span>Відправте <code>/gmstart</code> у групі та оберіть "🃏 UNO 🃏"</span></li>
+                        <li><span>Натисніть "Приєднатися" щоб стати гравцем</span></li>
+                        <li><span>Коли збереться достатньо гравців, натисніть "Почати гру"</span></li>
+                        <li><span>Кожен гравець отримує карти</span></li>
+                        <li>
+                            <div class="rules-content">
+                                <span>Гравці ходять по черзі, викладаючи карти:</span>
+                                <ul>
+                                    <li><span>Того ж кольору</span></li>
+                                    <li><span>Того ж номера</span></li>
+                                    <li><span>Спеціальні карти (Wild, +2, +4, Reverse, Skip)</span></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><span>Якщо немає підходящої карти, гравець бере з колоди</span></li>
+                        <li><span>Коли у гравця залишається 1 карта, потрібно натиснути "УНО!"</span></li>
+                        <li><span>Перший гравець без карт виграє!</span></li>
+                    </ol>
+                </div>
+
+                <div class="game-features">
+                    <h2>Особливості</h2>
+                    <ul class="features-list">
+                        <li>✅ Класичні правила UNO</li>
+                        <li>✅ Спеціальні карти: +2, +4, Reverse, Skip, Wild</li>
+                        <li>✅ Вибір кольору (Wild cards)</li>
+                        <li>✅ Система очок та рейтингу</li>
+                        <li>✅ Автоматичне "УНО!" (опціонально в налаштуваннях)</li>
+                        <li>✅ Автоматичне взяття карт до збігу (опціонально)</li>
+                        <li>✅ Система втручання (Intervention)</li>
+                    </ul>
+                </div>
+
+                <div class="game-cards">
+                    <h2>Спеціальні карти</h2>
+                    <div class="cards-grid">
+                        <div class="card-item">
+                            <img src="card/r_draw.png" alt="+2" class="card-image card-rotate" data-card-type="draw" data-colors='["r", "b", "g", "y"]'>
+                            <h3>+2 (Draw Two)</h3>
+                            <p>Наступний гравець бере 2 карти з колоди та пропускає свій хід. Можна використати карту +2 того ж кольору, щоб передати ефект далі.</p>
+                        </div>
+                        <div class="card-item">
+                            <img src="card/r_skip.png" alt="Skip" class="card-image card-rotate" data-card-type="skip" data-colors='["r", "b", "g", "y"]'>
+                            <h3>Пропустити хід (Skip)</h3>
+                            <p>Наступний гравець пропускає свій хід. Можна використати карту Skip того ж кольору або того ж типу.</p>
+                        </div>
+                        <div class="card-item">
+                            <img src="card/r_reverse.png" alt="Reverse" class="card-image card-rotate" data-card-type="reverse" data-colors='["r", "b", "g", "y"]'>
+                            <h3>Реверс (Reverse)</h3>
+                            <p>Змінює напрямок гри (за годинниковою стрілкою ↔ проти годинникової стрілки). У грі з двома гравцями працює як Skip.</p>
+                        </div>
+                        <div class="card-item">
+                            <img src="card/colorchooser.png" alt="Color Chooser" class="card-image">
+                            <h3>Вибір кольору (Wild)</h3>
+                            <p>Можна використати в будь-який момент. Після використання ви обираєте колір, який має бути наступним. Не додає карт іншим гравцям.</p>
+                        </div>
+                        <div class="card-item">
+                            <img src="card/draw_four.png" alt="+4" class="card-image">
+                            <h3>+4 (Draw Four)</h3>
+                            <p>Наступний гравець бере 4 карти з колоди та пропускає свій хід. Ви обираєте колір для наступного ходу. Можна використати тільки якщо немає підходящої карти.</p>
+                        </div>
+                        <div class="card-item">
+                            <img src="card/shuffle.png" alt="Shuffle" class="card-image">
+                            <h3>Перемішування (Shuffle)</h3>
+                            <p>Збирає всі карти всіх гравців, перемішує їх та перерозподіляє порівну між гравцями (кожен отримує стільки ж карт, скільки мав). Після цього ви обираєте колір для наступного ходу.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-commands">
+                    <h2>Команди</h2>
+                    <div class="commands-list">
+                        <div class="command-item">
+                            <code>/gmstart</code>
+                            <span>Обрати гру</span>
+                        </div>
+                        <div class="command-item">
+                            <code>/gmjoin</code>
+                            <span>Приєднатися до UNO</span>
+                        </div>
+                        <div class="command-item">
+                            <code>/gmstop</code>
+                            <span>Зупинити гру</span>
+                        </div>
+                        <div class="command-item">
+                            <code>/gmleave</code>
+                            <span>Вийти з гри</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Truth Ukrainian Botik</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

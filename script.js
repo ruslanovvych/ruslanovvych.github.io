@@ -511,4 +511,47 @@ function periodicViewportUpdate() {
 }
 
 // Запускаємо періодичне оновлення
-setInterval(periodicViewportUpdate, 2000); 
+setInterval(periodicViewportUpdate, 2000);
+
+// Функція для ротації кольорів карт UNO з анімацією переворота
+function initCardRotation() {
+    const cardImages = document.querySelectorAll('.card-rotate');
+    const colors = ['r', 'b', 'g', 'y']; // red, blue, green, yellow
+    
+    cardImages.forEach((img, index) => {
+        const cardType = img.getAttribute('data-card-type');
+        let currentColorIndex = 0;
+        
+        // Додаємо обгортку для 3D ефекту
+        const wrapper = document.createElement('div');
+        wrapper.className = 'card-flip-wrapper';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+        
+        // Змінюємо колір карт кожні 2 секунди з різною затримкою для кожної карти
+        setInterval(() => {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            const color = colors[currentColorIndex];
+            
+            // Початок переворота
+            wrapper.style.transform = 'rotateY(90deg)';
+            wrapper.style.opacity = '0.5';
+            
+            // Після половини переворота змінюємо карту
+            setTimeout(() => {
+                img.src = `card/${color}_${cardType}.png`;
+                
+                // Завершуємо переворот
+                wrapper.style.transform = 'rotateY(0deg)';
+                wrapper.style.opacity = '1';
+            }, 300); // Половина часу переворота
+        }, 2000 + (index * 300)); // Різна затримка для кожної карти
+    });
+}
+
+// Ініціалізація ротації карт після завантаження сторінки
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.card-rotate')) {
+        initCardRotation();
+    }
+}); 
