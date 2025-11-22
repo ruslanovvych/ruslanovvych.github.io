@@ -554,4 +554,55 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.card-rotate')) {
         initCardRotation();
     }
+});
+
+// Функція для секретного кавуна
+function initSecretWatermelon() {
+    const secretWatermelon = document.getElementById('secretWatermelon');
+    const modal = document.getElementById('watermelonModal');
+    const modalContent = document.querySelector('.watermelon-modal-content');
+    
+    if (!secretWatermelon || !modal) return;
+    
+    // Відкриття модального вікна при кліку на кавун
+    secretWatermelon.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Закриття при кліку на плашку (фон модального вікна)
+    modal.addEventListener('click', function(e) {
+        // Закриваємо тільки якщо клік на самому модальному вікні (фон), а не на контенті
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Запобігаємо закриттю при кліку на контент
+    if (modalContent) {
+        modalContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // Закриття при натисканні Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Ініціалізація секретного кавуна
+document.addEventListener('DOMContentLoaded', function() {
+    initSecretWatermelon();
+});
+
+// Також пробуємо ініціалізувати після повного завантаження сторінки
+window.addEventListener('load', function() {
+    initSecretWatermelon();
 }); 
