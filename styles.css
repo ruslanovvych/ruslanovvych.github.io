@@ -988,6 +988,21 @@ body {
         height: 6px;
     }
     
+    /* Налаштування для мобільних */
+    .setting-item h3 {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .setting-item .setting-status {
+        margin-left: 0;
+        font-size: 0.6rem;
+        padding: 3px 6px;
+    }
+    
     /* Страницы с описанием игр */
     .game-detail-page {
         padding: 20px 10px;
@@ -1267,6 +1282,22 @@ body {
     
     .card-item p {
         font-size: 0.8rem;
+    }
+    
+    /* Налаштування для дуже малих екранів */
+    .setting-item h3 {
+        font-size: 0.7rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-align: center;
+    }
+    
+    .setting-item .setting-status {
+        font-size: 0.55rem;
+        padding: 2px 5px;
+        line-height: 1.2;
     }
     
     .back-link {
@@ -1821,4 +1852,123 @@ body, .container, .main-content {
     to {
         width: 100%;
     }
+}
+
+/* Стилі для переключателя режимів */
+.mode-switcher {
+    background: rgba(45, 45, 45, 0.9);
+    border: 3px solid var(--border-red);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.mode-button {
+    padding: 12px 24px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    background: var(--primary-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 5px;
+    color: var(--text-beige);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+.mode-button:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.mode-button.active {
+    background: var(--accent-gold);
+    color: var(--border-dark);
+    border-color: var(--accent-gold);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.mode-content {
+    display: none;
+}
+
+.mode-content.active {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Стилі для секції налаштувань */
+.game-settings {
+    background: rgba(45, 45, 45, 0.9);
+    border: 3px solid var(--border-red);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.setting-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.setting-item h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 var(--border-dark);
+    line-height: 1.4;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.setting-item .setting-title {
+    display: block;
+    width: 100%;
+}
+
+.setting-item p {
+    color: var(--text-beige);
+    line-height: 1.6;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.setting-item .setting-status {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    background: var(--primary-dark);
+    border: 1px solid var(--border-dark);
+    border-radius: 3px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0;
+}
+
+.setting-item .setting-status.enabled {
+    color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.setting-item .setting-status.disabled {
+    color: #f44336;
+    border-color: #f44336;
 } 

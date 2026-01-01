@@ -528,6 +528,13 @@ function initCardRotation() {
         img.parentNode.insertBefore(wrapper, img);
         wrapper.appendChild(img);
         
+        // Маппінг cardType до реальних назв файлів
+        const cardTypeMap = {
+            'zero': '0',
+            'seven': '7'
+        };
+        const fileCardType = cardTypeMap[cardType] || cardType;
+        
         // Змінюємо колір карт кожні 2 секунди з різною затримкою для кожної карти
         setInterval(() => {
             currentColorIndex = (currentColorIndex + 1) % colors.length;
@@ -539,7 +546,7 @@ function initCardRotation() {
             
             // Після половини переворота змінюємо карту
             setTimeout(() => {
-                img.src = `card/${color}_${cardType}.png`;
+                img.src = `card/${color}_${fileCardType}.png`;
                 
                 // Завершуємо переворот
                 wrapper.style.transform = 'rotateY(0deg)';
