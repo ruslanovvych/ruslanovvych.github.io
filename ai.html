@@ -28,41 +28,49 @@
 </head>
 <body>
     <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
     
     <div class="container">
         <main class="main-content">
             <section class="game-detail-page">
-                <a href="index.html" class="back-link">← Назад до головної</a>
-                
-                <h1 class="game-title">🤖 AI Спілкування</h1>
+                <h1 class="game-title">Спілкування</h1>
                 
                 <div class="game-description">
                     <h2>Що це за функція?</h2>
-                    <p>Поговоріть з Тру Ботіком та отримайте цікаві відповіді! AI агент з пам'яттю розмов, який розуміє контекст та може підтримувати довгі діалоги.</p>
+                    <p>Поговоріть з Тру Ботиком та отримайте відповіді на ваші питання.</p>
                 </div>
 
                 <div class="game-rules">
                     <h2>Як це працює?</h2>
                     <ol class="rules-list">
-                        <li><span>AI агент доступний тільки для Premium груп</span></li>
-                        <li><span>Увімкніть AI агента в налаштуваннях (<code>/truthsettings</code>)</span></li>
-                        <li><span>Звертайтеся до бота по імені у групі</span></li>
-                        <li><span>Бот відповідає на ваші повідомлення природною мовою</span></li>
-                        <li><span>AI пам'ятає контекст попередніх повідомлень</span></li>
-                        <li><span>Можна вести довгі діалоги та обговорювати різні теми</span></li>
+                        <li><span>Звертайтеся до бота по імені (Тру Ботик) у групі</span></li>
+                        <li><span>Бот відповідає на ваші повідомлення.</span></li>  
+                        <li><span>Розуміє контекст, сам вирішує, що важливо памʼятати, а що ні.</span></li>   
+                        <li><span>Може оцінювати шанси, наприклад: "Який шанс, що Ігор зʼїв мій торт?" -Близько 56%</span></li>            
                     </ol>
-                </div>
-
-                <div class="game-features">
-                    <h2>Особливості</h2>
-                    <ul class="features-list">
-                        <li>👑 Premium функція</li>
-                        <li>✅ Пам'ять розмов - бот пам'ятає контекст</li>
-                        <li>✅ Природна мова - спілкування як з людиною</li>
-                        <li>✅ Розуміння контексту</li>
-                        <li>✅ Підтримка довгих діалогів</li>
-                        <li>✅ Відповіді на різні теми</li>
-                    </ul>
                 </div>
 
             </section>
@@ -71,7 +79,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Truth Ukrainian Botik</p>
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
         </div>
     </footer>
 

@@ -1,13 +1,13 @@
 /* Основні стилі та змінні */
 :root {
     --primary-dark: #1a1a1a;
-    --secondary-dark: #2d2d2d;
-    --accent-gold: #ffd700;
-    --accent-red: #ff4444;
+    --secondary-dark: #3a2a25;
+    --accent-gold: #e2d3b8;
+    --accent-red: #e7a27a;
     --accent-blue: #4444ff;
-    --text-light: #f0f0f0;
-    --text-beige: #f5f5dc;
-    --border-red: #cc3333;
+    --text-light: #e7dcc8;
+    --text-beige: #d8c7aa;
+    --border-red: #6f4e43;
     --border-dark: #333333;
     --pixel-size: 2px;
     
@@ -19,6 +19,51 @@
     --tg-theme-link-color: #FFD700;
     --tg-theme-button-color: #FF4444;
     --tg-theme-button-text-color: #FFFFFF;
+}
+
+/* Альтернативні палітри (чорний фон зберігається) */
+body[data-theme="sunset"] {
+    --accent-gold: #ffb347;
+    --accent-red: #ff6b6b;
+    --text-beige: #ffe8cc;
+    --border-red: #d95f5f;
+}
+
+body[data-theme="apricot"] {
+    --accent-gold: #ffc27a;
+    --accent-red: #ff8f70;
+    --text-beige: #fff0dd;
+    --border-red: #d77a5e;
+}
+
+body[data-theme="ember"] {
+    --accent-gold: #ffcf66;
+    --accent-red: #ff7a45;
+    --text-beige: #fff1dc;
+    --border-red: #d4663e;
+}
+
+body[data-theme="rosegold"] {
+    --accent-gold: #f8c291;
+    --accent-red: #f78fb3;
+    --text-beige: #fff1f6;
+    --border-red: #cf6b8f;
+}
+
+body[data-theme="dusk"] {
+    --accent-gold: #ffbe88;
+    --accent-red: #c084fc;
+    --text-beige: #f6eefe;
+    --border-red: #8b5cf6;
+}
+
+body[data-theme="cocoa"] {
+    --accent-gold: #e2d3b8;
+    --accent-red: #e7a27a;
+    --text-light: #e7dcc8;
+    --text-beige: #d8c7aa;
+    --border-red: #6f4e43;
+    --secondary-dark: #3a2a25;
 }
 
 /* Анімований фон */
@@ -39,6 +84,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overscroll-behavior: none;
+}
+
 body {
     font-family: 'Orbitron', monospace;
     background: var(--tg-theme-bg-color, #000);
@@ -52,12 +101,211 @@ body {
     /* Додаткові налаштування для Telegram WebApp */
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
+    overscroll-behavior-y: none;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+/* Бургер-меню на головній */
+.hamburger-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    border: 2px solid var(--border-red);
+    border-radius: 10px;
+    background: rgba(26, 26, 26, 0.92);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    z-index: 2000;
+    transition: none;
+}
+
+body.menu-open .hamburger-button {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none !important;
+}
+
+.hamburger-button span {
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent-gold);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1500;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    background: rgba(26, 26, 26, 0.98);
+    border-left: 3px solid var(--border-red);
+    padding: 20px 20px 24px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    z-index: 1800;
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    transform: translateX(0);
+}
+
+.menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.side-menu-group {
+    margin: 10px 2px 2px;
+    padding: 0 6px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.62rem;
+    color: var(--accent-gold);
+    opacity: 0.9;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.side-menu-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-beige);
+    border: 2px solid var(--border-dark);
+    background: var(--primary-dark);
+    border-radius: 5px;
+    padding: 12px 14px;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.side-menu-link:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.side-menu-link:active {
+    transform: scale(0.98);
+    border-color: var(--accent-gold);
+    background: rgba(26, 26, 26, 1);
+}
+
+.side-menu-link.active {
+    border-color: var(--accent-gold);
+    color: var(--border-dark);
+    background: var(--accent-gold);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.overview-panel {
+    background: rgba(45, 45, 45, 0.42);
+    border: 3px solid var(--border-red);
+    border-radius: 12px;
+    padding: 28px;
+    backdrop-filter: blur(8px);
+    margin-bottom: 24px;
+}
+
+.overview-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.overview-block {
+    background: rgba(26, 26, 26, 0.5);
+    border: 2px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.overview-block h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--accent-gold);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.overview-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.overview-block li {
+    color: var(--text-beige);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.overview-note {
+    margin-top: 16px;
+    color: var(--text-beige);
+    text-align: center;
+}
+
+/* Головна: центрований тайтл + контент нижче скролом */
+.home-screen .main-content {
+    padding: 0;
+}
+
+.home-screen .hero-section {
+    min-height: 100vh;
+    margin-bottom: 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-screen .main-title {
+    margin-bottom: 0;
+}
+
+.home-screen .hero-description {
+    display: none;
+}
+
+.home-screen .overview-panel {
+    margin-top: 26vh;
+    margin-bottom: 80px;
 }
 
 
@@ -179,14 +427,14 @@ body {
 }
 
 .feature-card {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 20px 30px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
     cursor: pointer;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -261,12 +509,12 @@ body {
 .instruction-item {
     display: flex;
     align-items: center;
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 30px;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 
@@ -338,13 +586,13 @@ body {
 }
 
 .command-card {
-    background: rgba(45, 45, 45, 0.9);
-    border: 2px solid var(--border-red);
-    border-radius: 8px;
+    background: rgba(45, 45, 45, 0.42);
+    border: 3px solid var(--border-red);
+    border-radius: 12px;
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -776,6 +1024,54 @@ body {
 
 /* Адаптивність */
 @media (max-width: 768px) {
+    .hamburger-button {
+        top: 14px;
+        right: 14px;
+        width: 46px;
+        height: 46px;
+        padding: 9px;
+        gap: 5px;
+    }
+
+    .side-menu {
+        width: 70vw;
+        padding-top: 20px;
+    }
+
+    .side-menu-group {
+        font-size: 0.56rem;
+    }
+
+    .side-menu-link {
+        font-size: 0.9rem;
+        padding: 11px 12px;
+    }
+
+    .overview-panel {
+        padding: 18px;
+    }
+
+    .home-screen .hero-section {
+        padding: 0 10px;
+    }
+
+    .home-screen .overview-panel {
+        margin-top: 20vh;
+        margin-bottom: 40px;
+    }
+
+    .overview-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-block h3 {
+        font-size: 0.65rem;
+    }
+
+    .overview-block li {
+        font-size: 0.85rem;
+    }
+
     .container {
         padding: 0 10px;
     }
@@ -1367,7 +1663,7 @@ body {
 }
 
 /* Дозволяємо клікати тільки на команди, посилання на бота та картки функцій */
-.command-card code, .bot-link, .feature-card-link, .back-link, .secret-watermelon, .watermelon-link {
+.command-card code, .bot-link, .feature-card-link, .back-link, .secret-watermelon, .watermelon-link, .hamburger-button, .hamburger-button *, .menu-overlay, .side-menu, .side-menu-links, .side-menu-link, .side-menu-group {
     pointer-events: auto !important;
     cursor: pointer;
 }
@@ -1462,12 +1758,12 @@ body, .container, .main-content {
 .game-rules,
 .game-features,
 .game-commands {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -1539,17 +1835,7 @@ body, .container, .main-content {
 }
 
 .rules-list li::before {
-    content: counter(list-counter);
-    counter-increment: list-counter;
-    color: var(--accent-gold);
-    font-weight: 700;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7rem;
-    line-height: 1.8;
-    flex-shrink: 0;
-    min-width: 25px;
-    align-self: baseline;
-    margin-top: 0;
+    content: none;
 }
 
 .rules-list li > span,
@@ -1642,16 +1928,17 @@ body, .container, .main-content {
 }
 
 .rules-list ul li::before {
-    content: '•';
-    color: var(--accent-gold);
-    font-size: 0.9rem;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent-gold);
+    border-radius: 0;
     flex-shrink: 0;
-    line-height: 1.8;
     position: static;
     min-width: 10px;
     align-self: baseline;
     padding-top: 0;
-    margin-top: 0;
+    margin-top: 0.62em;
 }
 
 .rules-list ul li > span {
@@ -1740,14 +2027,30 @@ body, .container, .main-content {
     font-style: italic;
 }
 
+.note-strong {
+    color: var(--accent-red);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.note-regular {
+    color: var(--text-beige);
+    margin-bottom: 20px;
+}
+
+.note-top {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 /* Стилі для карт UNO */
 .game-cards {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 .game-cards h2 {
@@ -1767,9 +2070,9 @@ body, .container, .main-content {
 }
 
 .card-item {
-    background: var(--primary-dark);
-    border: 2px solid var(--border-dark);
-    border-radius: 8px;
+    background: rgba(45, 45, 45, 0.42);
+    border: 2px solid var(--border-red);
+    border-radius: 12px;
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
@@ -1849,12 +2152,12 @@ body, .container, .main-content {
 
 /* Стилі для переключателя режимів */
 .mode-switcher {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 20px;
     margin-bottom: 30px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -1897,24 +2200,26 @@ body, .container, .main-content {
 
 /* Стилі для секції налаштувань */
 .game-settings {
-    background: rgba(45, 45, 45, 0.9);
+    background: rgba(45, 45, 45, 0.42);
     border: 3px solid var(--border-red);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 .setting-item {
+    background: rgba(45, 45, 45, 0.26);
+    border: 1px solid rgba(111, 78, 67, 0.6);
+    border-radius: 10px;
+    padding: 16px;
     margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 16px;
 }
 
 .setting-item:last-child {
-    border-bottom: none;
     margin-bottom: 0;
-    padding-bottom: 0;
+    padding-bottom: 16px;
 }
 
 .setting-item h3 {

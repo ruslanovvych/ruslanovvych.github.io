@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кавунчики - Truth Ukrainian Botik</title>
+    <title>Крокодил - Truth Ukrainian Botik</title>
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="dark">
     <link rel="stylesheet" href="styles.css">
@@ -52,31 +52,52 @@
             <a href="premium.html" class="side-menu-link">Преміум</a>
         </div>
     </nav>
-    
+
     <div class="container">
         <main class="main-content">
             <section class="game-detail-page">
-                <h1 class="game-title">Херсоньскі Кавунчики</h1>
-                
+                <h1 class="game-title">Крокодил</h1>
+
                 <div class="game-description">
-                    <h2>Що це за функція?</h2>
-                    <p>Вирощуйте кавунчики або їжте їх, збирайте колекцію та змагайтесь за перше місце в рейтингу.</p>
+                    <h2>Що це за гра?</h2>
+                    <p>Один гравець пояснює слово без однокореневих підказок, а інші намагаються якнайшвидше його відгадати.</p>
                 </div>
 
                 <div class="game-rules">
-                    <h2>Як це працює?</h2>
+                    <h2>Як грати?</h2>
                     <ol class="rules-list">
-                        <li><span>Пишіть <strong>"кавунчик"</strong> у будь-якому груповому чаті з ботом.</span></li>
-                        <li><span>Ваш кавунчик росте або зменшується з кожним повідомленням.</span></li>
-                        <li><span>Є обмеження по часу між ростом в залежності від спеціальної події.</span></li>
-                        <li><span>Спеціальні події та дні кавунчика дають бонуси і оголошуються о 8 ранку кожного дня.</span></li>
-                        <li><span>Коли кавунчик досягає 2 кг, його можна зберегти в колекцію. Переглянути колекцію і дізнатися чи можна зберегти кавун можна командою /mykavun</span></li>
-                        <li><span>Збережені кавунчики отримують унікальні українські назви.</span></li>
-                        <li><span>Можна їсти кавунчика, але це зменшує його вагу, проте ваше місце в рейтингу росте. Як зʼїсти кавунчик? Просто напиши: зʼїсти кавунчик або кавунчик кусь.</span></li>
-    
+                        <li><span>Бот призначає ведучого та надсилає йому секретне слово.</span></li>
+                        <li><span>Ведучий пояснює слово описом або асоціаціями, але не називає однокореневі частини.</span></li>
+                        <li><span>Гравці пишуть свої варіанти у чат — хто першим вгадує, отримує очки.</span></li>
+                        <li><span>Після раунду ведучий змінюється, і гра продовжується наступним словом.</span></li>
                     </ol>
                 </div>
 
+                <div class="game-settings">
+                    <h2>Налаштування</h2>
+                    <p class="note-regular">Змінюються через <code>/truthsettings</code> → розділ гри "Крокодил".</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Замін слова</span></h3>
+                        <p>Скільки разів ведучий може замінити слово в одному раунді (цикл 3/5/7).</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Наступне слово</span></h3>
+                        <p>Показує ведучому наступне слово в підказці "подивитись слово", якщо ще є заміни.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Перевірка кореня</span></h3>
+                        <p>Перевіряє підказки ведучого на спільний корінь із секретним словом.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Бан після 3 порушень</span></h3>
+                        <p>Тривалість блокування ведучого після 3 порушень перевірки кореня (10/30/60 хв).</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">18+ слова в грі</span></h3>
+                        <p>Додає категорію 18+ слів.</p>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
@@ -84,27 +105,9 @@
     <footer class="footer">
         <div class="footer-content">
             <p>19 червня 2025 Truth Ukrainian Botik</p>
-            <div class="footer-watermelon">
-                <span class="secret-watermelon" id="secretWatermelon">W</span>
-            </div>
         </div>
     </footer>
-
-    <!-- Модальне вікно для секретного кавуна -->
-    <div id="watermelonModal" class="watermelon-modal">
-        <div class="watermelon-modal-content">
-            <div class="watermelon-modal-header">
-                <h2>Вітаємо!</h2>
-            </div>
-            <div class="watermelon-modal-body">
-                <div class="secret-watermelon-icon">W</div>
-                <p class="watermelon-modal-title">Ви знайшли секретний <strong>Золотий Кавун</strong>!</p>
-                <p class="watermelon-modal-text">Напишіть <a href="https://t.me/ruslanovvych" target="_blank" class="watermelon-link">@ruslanovvych</a> щоб отримати його в колекцію!</p>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-

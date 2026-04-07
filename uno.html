@@ -28,13 +28,35 @@
 </head>
 <body>
     <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
     
     <div class="container">
         <main class="main-content">
             <section class="game-detail-page">
-                <a href="index.html" class="back-link">← Назад до головної</a>
-                
-                <h1 class="game-title">🃏 UNO 🃏</h1>
+                <h1 class="game-title">UNO</h1>
                 
                 <div class="game-description">
                     <h2>Що це за гра?</h2>
@@ -43,8 +65,8 @@
 
                 <!-- Переключатель режимів -->
                 <div class="mode-switcher">
-                    <button class="mode-button active" onclick="switchMode('classic')">🃏 Класичний режим 🃏</button>
-                    <button class="mode-button" onclick="switchMode('nomercy')">💀 No Mercy 💀</button>
+                    <button class="mode-button active" onclick="switchMode('classic')">Класичний режим</button>
+                    <button class="mode-button" onclick="switchMode('nomercy')">No Mercy</button>
                 </div>
 
                 <!-- Класичний режим -->
@@ -114,15 +136,15 @@
                 <div id="nomercy-mode" class="mode-content">
                     <div class="game-rules">
                         <h2>Правила режиму No Mercy</h2>
-                        <p style="color: var(--accent-red); font-weight: bold; margin-bottom: 20px;">💀 Режим No Mercy - це більш жорстка версія UNO!</p>
-                        <p style="color: var(--text-beige); margin-bottom: 20px;">Режим No Mercy використовує звичайні правила UNO з наступними відмінностями:</p>
+                        <p class="note-strong">Режим No Mercy - це більш жорстка версія UNO!</p>
+                        <p class="note-regular">Режим No Mercy використовує звичайні правила UNO з наступними відмінностями:</p>
                         <ol class="rules-list">
                             <li><span>У колоді немає карт +2 - замість них є потужніші карти +6 та +10</span></li>
                             <li><span>Карта +4 не може бути оскаржена (оскарження недоступне)</span></li>
                             <li><span>Якщо у гравця накопичується 25 або більше карт, він автоматично вибуває з гри</span></li>
                             <li><span>Додані спеціальні карти з унікальними механіками (описані нижче)</span></li>
                         </ol>
-                        <p style="color: var(--text-beige); margin-top: 20px;">Всі інші правила залишаються такими ж, як у класичному режимі: роздача 7 карт, чергування ходів, використання карт за кольором або номером, взяття карт з колоди, система "УНО!", розподіл очок (3 очки переможцю, 1 очко всім іншим, крім останнього з картами, 0 очок останньому).</p>
+                        <p class="note-regular note-top">Всі інші правила залишаються такими ж, як у класичному режимі: роздача 7 карт, чергування ходів, використання карт за кольором або номером, взяття карт з колоди, система "УНО!", розподіл очок (3 очки переможцю, 1 очко всім іншим, крім останнього з картами, 0 очок останньому).</p>
                     </div>
 
                     <div class="game-cards">
@@ -146,7 +168,7 @@
                             <div class="card-item">
                                 <img src="card/r_0.png" alt="0" class="card-image card-rotate" data-card-type="zero" data-colors='["r", "b", "g", "y"]'>
                                 <h3>Карта 0 - Обмін руками по напрямку</h3>
-                                <p>Коли ви зіграєте карту 0, всі гравці обмінюються руками по напрямку гри. Наприклад, у грі за годинниковою стрілкою: гравець A → гравець B, гравець B → гравець C, гравець C → гравець A. Це може радикально змінити ситуацію в грі!</p>
+                                <p>Коли ви зіграєте карту 0, всі гравці обмінюються руками по напрямку гри. Наприклад, у грі за годинниковою стрілкою: гравець A передає руку гравцю B, гравець B передає руку гравцю C, гравець C передає руку гравцю A. Це може радикально змінити ситуацію в грі!</p>
                             </div>
                             <div class="card-item">
                                 <img src="card/r_7.png" alt="7" class="card-image card-rotate" data-card-type="seven" data-colors='["r", "b", "g", "y"]'>
@@ -160,51 +182,66 @@
                 <!-- Налаштування гри -->
                 <div class="game-settings">
                     <h2>Налаштування гри</h2>
-                    <p style="color: var(--text-beige); margin-bottom: 20px;">Всі налаштування можна змінити через команду <code>/truthsettings</code>. Бот надішле меню з налаштуваннями в приватні повідомлення, де потрібно натиснути на "UNO".</p>
-                    
+                    <p class="note-regular">Всі налаштування змінюються через <code>/truthsettings</code> у розділі UNO.</p>
+
                     <div class="setting-item">
-                        <h3><span class="setting-title">Режим No Mercy</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Увімкнути жорсткіший режим з додатковими картами (+6, +10, All). У цьому режимі немає карт +2, але є більш потужні варіанти карт взятки та стратегічні карти All для скидання всіх карт одного кольору.</p>
+                        <h3><span class="setting-title">No Mercy</span></h3>
+                        <p>Вмикає жорсткий режим UNO з окремими картами та механіками.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Авто «УНО!»</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Якщо увімкнено, гравець автоматично натискає "УНО!" коли у нього залишається 1 карта. Якщо вимкнено, гравець повинен самостійно натиснути кнопку "УНО!", інакше буде оштрафований на 2 карти, якщо інший гравець натисне "УНО!" за нього раніше.</p>
+                        <h3><span class="setting-title">Авто «УНО!»</span></h3>
+                        <p>Автоматично натискає «УНО!» при одній карті на руці.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Брати карти до збігу</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Якщо увімкнено, гравець автоматично бере карти з колоди, поки не з'явиться карта, яку можна зіграти. Якщо вимкнено, гравець бере тільки одну карту за раз і може зіграти її тільки якщо вона підходить.</p>
+                        <h3><span class="setting-title">Брати карти до збігу</span></h3>
+                        <p>Гравець добирає карти, доки не з'явиться карта, яку можна зіграти.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Втручання (Intervention)</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Якщо увімкнено, гравці можуть підкинути ідентичну карту (того ж кольору та типу) поза чергою протягом 5 секунд після того, як інший гравець поклав карту. Це дозволяє швидко зіграти свою чергу, якщо у вас є точно така сама карта.</p>
+                        <h3><span class="setting-title">Втручання</span></h3>
+                        <p>Дозволяє підкинути ідентичну карту поза чергою протягом короткого часу після чужого ходу.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Оскарження (Challenge)</span><span class="setting-status enabled">За замовчуванням: увімкнено</span></h3>
-                        <p>Дозволяє оскаржити карту +4 (Draw Four), якщо ви підозрюєте, що гравець зіграв її блефуючи (хоча у нього була підходяща карта). Якщо оскарження успішне - гравець, що зіграв +4, бере 4 карти, а ви - нічого. Якщо оскарження невдале - ви берете 6 карт за недовіру. <b>Примітка:</b> Це налаштування стосується тільки класичного режиму (у режимі No Mercy оскаржувати +4 не можна).</p>
+                        <h3><span class="setting-title">Оскарження</span></h3>
+                        <p>Дозволяє оскаржити +4 у класичному режимі, якщо є підозра на блеф. Якщо людина кладе +4, але в неї були інші варіанти ходу, то вона бере 4 карт, за умови, що інший гравець натиснув "оскаржити".</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">«+4» перекриває «+2»</span><span class="setting-status enabled">За замовчуванням: увімкнено</span></h3>
-                        <p>Дозволяє покласти карту +4 на карту +2, перекривши накопичені штрафи. Це дозволяє змінити колір та скинути накопичені штрафи на іншого гравця. <b>Примітка:</b> Це налаштування стосується тільки класичного режиму (у режимі No Mercy немає карт +2).</p>
+                        <h3><span class="setting-title">«+4» перекриває «+2»</span></h3>
+                        <p>Дає змогу перекрити +2 картою +4 та перенаправити штраф.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Перший до фінішу</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Якщо увімкнено, гра закінчується одразу, коли перший гравець позбувається всіх карт. Він отримує 3 очки, решта гравців отримують 0 очок. Якщо вимкнено, гра триває до останнього програшного гравця (гра продовжується, поки всі гравці не позбудуться карт або не залишиться один гравець).</p>
+                        <h3><span class="setting-title">Перший до фінішу</span></h3>
+                        <p>Раунд завершується одразу після фінішу першого гравця.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Приєднання після початку</span><span class="setting-status enabled">За замовчуванням: увімкнено</span></h3>
-                        <p>Дозволяє гравцям приєднуватися до гри після її початку. Новий гравець отримає стандартну кількість карт (7) та зможе грати з наступного раунду.</p>
+                        <h3><span class="setting-title">Приєднання після початку</span></h3>
+                        <p>Дозволяє новим гравцям заходити в гру вже після її старту.</p>
                     </div>
 
                     <div class="setting-item">
-                        <h3><span class="setting-title">Гаряча картопля (Hot Potato)</span><span class="setting-status disabled">За замовчуванням: вимкнено</span></h3>
-                        <p>Якщо увімкнено, гравець, який не встиг покласти карту протягом відведеного часу (10 секунд), бере 10 карт замість стандартних 2. Це робить гру більш інтенсивною та вимагає швидкої реакції.</p>
+                        <h3><span class="setting-title">Гаряча картопля</span></h3>
+                        <p>На хід дається 15 секунд, якщо не встиг покласти за цей час, то тобі дається +10 карт, як штраф.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Розрізнення кольорів</span></h3>
+                        <p>Додає допоміжні позначки кольору для кращої читабельності карт.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Колір і обмін — Тру Ботик</span></h3>
+                        <p>Тру ботик буде робити випадковий вибір кольору та обмін картами за вас.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Відмова від обміну після 7 (No Mercy)</span></h3>
+                        <p>Дозволяє відхиляти обмін руками після карти 7 у режимі No Mercy.</p>
                     </div>
                 </div>
 
@@ -214,7 +251,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Truth Ukrainian Botik</p>
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
         </div>
     </footer>
 

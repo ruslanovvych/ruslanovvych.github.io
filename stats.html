@@ -28,17 +28,39 @@
 </head>
 <body>
     <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
     
     <div class="container">
         <main class="main-content">
             <section class="game-detail-page">
-                <a href="index.html" class="back-link">← Назад до головної</a>
-                
-                <h1 class="game-title">📊 Об'єднана статистика</h1>
+                <h1 class="game-title">Рейтинг</h1>
                 
                 <div class="game-description">
                     <h2>Що це за функція?</h2>
-                    <p>Переглядайте статистику всіх ігор: локальну (для поточного чату) та глобальну (для всіх чатів). Змагайтеся за перше місце у рейтингах!</p>
+                    <p>Переглядайте рейтинг гравців всіх ігор: локальну (для поточного чату) та глобальну (для всіх чатів). Змагайтеся за перше місце у рейтингах!</p>
                 </div>
 
                 <div class="game-rules">
@@ -49,31 +71,20 @@
                             <div class="rules-content">
                                 <span>Оберіть тип статистики:</span>
                                 <ul>
-                                    <li><span>🍉 Кавунчики (локальна/глобальна)</span></li>
-                                    <li><span>🧠 Правда або Дія (локальна/глобальна)</span></li>
-                                    <li><span>⚖️ Правда або Фейк (локальна/глобальна)</span></li>
-                                    <li><span>🎭 Хто Я? (локальна/глобальна)</span></li>
-                                    <li><span>🃏 UNO (локальна/глобальна)</span></li>
+                                    <li><span>Кавунчики</span></li>
+                                    <li><span>Правда або Дія</span></li>
+                                    <li><span>Правда або Фейк</span></li>
+                                    <li><span>Хто Я? Що я?</span></li>
+                                    <li><span>UNO</span></li>
+                                    <li><span>Крокодил</span></li>
                                 </ul>
                             </div>
                         </li>
                         <li><span>Переглядайте рейтинг гравців</span></li>
-                        <li><span>Змагайтеся за перше місце!</span></li>
+                        <li><span>Змагайтеся за перше місце! Абсолютний чемпіон Тру Ботика, це людина, яка має найбільше корон у всіх іграх, та може отримати безкоштовний вибір емодзі.</span></li>
                     </ol>
                 </div>
 
-                <div class="game-features">
-                    <h2>Типи статистики</h2>
-                    <ul class="features-list">
-                        <li><span>🍉 <strong>Кавунчики</strong> - найбільші кавунчики, кількість зрощених</span></li>
-                        <li><span>🧠 <strong>Правда або Дія</strong> - кількість ігор, перемог, відповідей</span></li>
-                        <li><span>⚖️ <strong>Правда або Фейк</strong> - правильні відповіді, відсоток успішності</span></li>
-                        <li><span>🎭 <strong>Хто Я?</strong> - кількість ігор, вгаданих персонажів</span></li>
-                        <li><span>🃏 <strong>UNO</strong> - кількість ігор, перемог, очок</span></li>
-                        <li><span>✅ Локальна статистика - тільки для поточного чату</span></li>
-                        <li><span>🌍 Глобальна статистика - для всіх чатів разом</span></li>
-                    </ul>
-                </div>
 
             </section>
         </main>
@@ -81,7 +92,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Truth Ukrainian Botik</p>
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
         </div>
     </footer>
 

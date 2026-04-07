@@ -203,6 +203,7 @@ function initTelegramWebApp() {
 
 // Основні функції для інтерактивності
 document.addEventListener('DOMContentLoaded', function() {
+    document.body.setAttribute('data-theme', 'cocoa');
     // Ініціалізація анімованого фону
     initBackgroundAnimation();
     
@@ -213,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveElements();
     initCommandCopy();
     initTypingEffect();
+    initHamburgerMenu();
 });
 
 
@@ -253,7 +255,7 @@ function initInteractiveElements() {
 
 // Ефект друкування тексту
 function initTypingEffect() {
-    const titles = document.querySelectorAll('.main-title, .section-title');
+    const titles = document.querySelectorAll('.main-title, .section-title:not(.no-typing)');
     
     titles.forEach(title => {
         const text = title.textContent;
@@ -315,6 +317,69 @@ function initCommandCopy() {
                 showNotification('Помилка копіювання', 'error');
             });
         });
+    });
+}
+
+function initHamburgerMenu() {
+    const button = document.getElementById('hamburgerButton');
+    const menu = document.getElementById('mainMenu');
+    const overlay = document.getElementById('menuOverlay');
+    if (!button || !menu || !overlay) return;
+
+    const closeMenu = () => {
+        button.classList.remove('active');
+        menu.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.classList.remove('menu-open');
+        button.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+    };
+
+    const openMenu = () => {
+        button.classList.add('active');
+        menu.classList.add('open');
+        overlay.classList.add('show');
+        document.body.classList.add('menu-open');
+        button.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+    };
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (menu.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    highlightCurrentMenuLink(menu);
+}
+
+function highlightCurrentMenuLink(menu) {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const links = menu.querySelectorAll('.side-menu-link');
+    links.forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        const linkPath = href.split('/').pop();
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 }
 

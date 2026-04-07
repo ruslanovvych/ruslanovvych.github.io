@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адміністраторство - Truth Ukrainian Botik</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            setTimeout(() => {
+                tg.setHeaderColor('#000000');
+                tg.setBackgroundColor('#000000');
+                tg.setThemeParams({
+                    bg_color: '#000000',
+                    text_color: '#FFD700',
+                    button_color: '#FF4444',
+                    button_text_color: '#FFFFFF'
+                });
+            }, 50);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="game-detail-page">
+                <h1 class="game-title">Адміністраторство</h1>
+
+                <div class="game-description">
+                    <h2>Що це за розділ?</h2>
+                    <p>Тут зібрані базові налаштування бота з розділу "Загальні" та права доступу до команд керування іграми.</p>
+                </div>
+
+                <div class="game-settings">
+                    <h2>Загальні налаштування</h2>
+                    <p class="note-regular">Змінюються через <code>/truthsettings</code> → розділ "Загальні".</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Реакції</span></h3>
+                        <p>Вмикає або вимикає випадкові реакції бота в чаті.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Факти</span></h3>
+                        <p>Вмикає або вимикає випадкові факти від бота в чаті.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Хвилина мовчання (9:00)</span></h3>
+                        <p>Вмикає щоденне нагадування про хвилину мовчання о 9:00.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Рекомендації</span></h3>
+                        <p>Вмикає або вимикає блок рекомендацій (кнопки ботів партнерів) від бота.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Відправка вранці івенту кавунів</span></h3>
+                        <p>Дозволяє ранкове автоматичне повідомлення про івент "Кавунчики".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Видаляти «кавунчик» через 1 хв</span></h3>
+                        <p>Автоматично прибирає службові повідомлення росту кавунчика через хвилину.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">AI відповіді</span></h3>
+                        <p>Вмикає або вимикає відповіді ШІ у чаті.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Встановити посилання</span></h3>
+                        <p>Додає посилання для чату в рейтингу: назва чату в "Топ чатів" стає клікабельною.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Емодзі в топі чатів</span></h3>
+                        <p>Дозволяє встановити одне емодзі біля назви чату в рейтингу.</p>
+                    </div>
+                </div>
+
+                <div class="game-settings">
+                    <h2>Доступ до команд</h2>
+                    <p class="note-regular">Змінюються через <code>/truthsettings</code> → розділ "Доступ до команд".</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">/gmstart</span></h3>
+                        <p>Хто може запускати гру: для цієї команди доступні режими "Всі" або "Адмін".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">/gmstop</span></h3>
+                        <p>Хто може зупиняти гру: "Всі", "Адмін" або "Учасники в грі".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">/gmkick</span></h3>
+                        <p>Хто може виключати гравців з гри: "Всі", "Адмін" або "Учасники в грі".</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -28,49 +28,87 @@
 </head>
 <body>
     <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
     
     <div class="container">
         <main class="main-content">
             <section class="game-detail-page">
-                <a href="index.html" class="back-link">← Назад до головної</a>
-                
-                <h1 class="game-title">🧠 Правда або Дія 🎯</h1>
+                <h1 class="game-title">Правда або Дія</h1>
                 
                 <div class="game-description">
                     <h2>Що це за гра?</h2>
-                    <p>Класична гра Truth or Dare (Правда або Дія) для веселощів у групі. Гравець обирає між відповіддю на чесне питання або виконанням завдання.</p>
+                    <p>Класична гра "Правда або Дія", для веселощів у групі. Гравець обирає між відповіддю на чесне питання або виконанням завдання.</p>
                 </div>
 
                 <div class="game-rules">
                     <h2>Як грати?</h2>
                     <ol class="rules-list">
-                        <li><span>Відправте <code>/gmstart</code> у групі та оберіть "🧠 Правда або Дія 🎯"</span></li>
-                        <li><span>Натисніть "Приєднатися" щоб стати гравцем</span></li>
-                        <li><span>Коли збереться достатньо гравців, натисніть "Почати гру"</span></li>
+
                         <li>
                             <div class="rules-content">
                                 <span>На кожному ході гравець обирає між:</span>
                                 <ul>
-                                    <li><span><strong>🧠 Правда</strong> - відповісти на чесне питання</span></li>
-                                    <li><span><strong>🎯 Дія</strong> - виконати завдання</span></li>
+                                    <li><span><strong>Правда</strong> - відповісти на чесне питання</span></li>
+                                    <li><span><strong>Дія</strong> - виконати завдання</span></li>
                                 </ul>
                             </div>
                         </li>
-                        <li><span><strong>Важливо:</strong> Для відповіді на питання або виконання завдання потрібно <strong>відповісти на повідомлення бота</strong> з питанням/завданням (reply на повідомлення)</span></li>
-                        <li><span>Можна змінити питання (обмежена кількість разів за хід)</span></li>
-                        <li><span>Гра триває поки гравці не вийдуть або гра не буде зупинена</span></li>
+                        <li><span><strong>Важливо:</strong> Для відповіді на питання або виконання завдання потрібно <strong>відповісти на повідомлення бота</strong> з питанням або завданням.</span></li>
+                        <li><span>Гра триває поки гравці не вийдуть або гра не буде зупинена.</span></li>
                     </ol>
                 </div>
 
-                <div class="game-features">
-                    <h2>Особливості</h2>
-                    <ul class="features-list">
-                        <li>✅ Велика база питань та завдань</li>
-                        <li>✅ Система статистики та рейтингу</li>
-                        <li>✅ Автозбереження прогресу гри</li>
-                        <li>👑 Premium: Кількість змін питань налаштовується</li>
-                        <li>👑 Premium: 18+ питання (категорія Candid)</li>
-                    </ul>
+                <div class="game-settings">
+                    <h2>Налаштування</h2>
+                    <p class="note-regular">Змінюються через <code>/truthsettings</code> → розділ гри "Правда чи Дія".</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Перевірка відповіді</span></h3>
+                        <p>Коли ввімкнено — після відповіді гравця інші голосують, чи зарахувати її; якщо ні — він отримує штрафний поінт, і при 3 поінтах автоматично вилітає з гри на заданий час без можливості повернення.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Повернення після штрафу</span></h3>
+                        <p>Час очікування перед повторним входом у гру після отримання 3 штрафних поінтів.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Заміни питань</span></h3>
+                        <p>Скільки разів за хід можна змінити питання або дію.</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">18+ питання</span></h3>
+                        <p>Вмикає питання категорії (18+).</p>
+                    </div>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Свої питання або дії</span></h3>
+                        <p>Дозволяє час від часу обирати гравця і задавати йому своє питання або дію.</p>
+                    </div>
                 </div>
 
             </section>
@@ -79,7 +117,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 Truth Ukrainian Botik</p>
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
         </div>
     </footer>
 

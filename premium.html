@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преміум - Truth Ukrainian Botik</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            setTimeout(() => {
+                tg.setHeaderColor('#000000');
+                tg.setBackgroundColor('#000000');
+                tg.setThemeParams({
+                    bg_color: '#000000',
+                    text_color: '#FFD700',
+                    button_color: '#FF4444',
+                    button_text_color: '#FFFFFF'
+                });
+            }, 50);
+        }
+    </script>
+</head>
+<body>
+    <canvas id="background-canvas" class="background-canvas"></canvas>
+    <button class="hamburger-button" id="hamburgerButton" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="mainMenu" aria-hidden="true">
+        <div class="side-menu-links">
+            <div class="side-menu-group">Сервіс</div>
+            <a href="index.html" class="side-menu-link">Головна</a>
+            <a href="ai.html" class="side-menu-link">Спілкування з Ботом</a>
+            <a href="stats.html" class="side-menu-link">РЕЙТИНГ</a>
+            <div class="side-menu-group">Ігри</div>
+            <a href="tod.html" class="side-menu-link">Правда або Дія</a>
+            <a href="tof.html" class="side-menu-link">Правда або Фейк</a>
+            <a href="whoami.html" class="side-menu-link">Хто я? Що я?</a>
+            <a href="uno.html" class="side-menu-link">UNO</a>
+            <a href="watermelon.html" class="side-menu-link">Кавунчики</a>
+            <a href="croco.html" class="side-menu-link">Крокодил</a>
+            <div class="side-menu-group">Керування</div>
+            <a href="admin.html" class="side-menu-link">Адміністраторство</a>
+            <a href="premium.html" class="side-menu-link">Преміум</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <section class="game-detail-page">
+                <h1 class="game-title">Преміум</h1>
+
+                <div class="game-description">
+                    <h2>Що дає Premium для чату?</h2>
+                    <p>Premium відкриває додаткові налаштування бота, розширені режими ігор та опції персоналізації для всього чату.</p>
+                </div>
+
+                <div class="game-settings">
+                    <h2>Загальні Premium-можливості</h2>
+                    <p class="note-regular">Керується через <code>/truthsettings</code> → "Купити Premium" та інші розділи налаштувань.</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">AI відповіді</span></h3>
+                        <p>Увімкнення відповідей ШІ у чаті.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Встановити посилання в рейтингу</span></h3>
+                        <p>Назва вашого чату в "Топ чатів" стає клікабельною та веде на задане посилання.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Емодзі в топі чатів</span></h3>
+                        <p>Додає одне вибране емодзі біля назви чату в рейтингу.</p>
+                    </div>
+                </div>
+
+                <div class="game-settings">
+                    <h2>ШІ та профіль бота</h2>
+                    <p class="note-regular">Розділ "Налаштування ШІ".</p>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">РП режим</span></h3>
+                        <p>Бот будуэ свої відповіді на основі анкети бота і може відігравати якусь роль у чаті.</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Анкета бота</span></h3>
+                        <p>Дозволяє задати параметри персонажа бота: ім'я, прізвисько, вік, рід зайнятості, орієнтацію, етнічність, хобі, біографію та додаткові факти.</p>
+                    </div>
+                </div>
+
+                <div class="game-settings">
+                    <h2>Premium у іграх</h2>
+
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Правда або Дія</span></h3>
+                        <p>Доступні додаткові параметри: "Змін питань", "18+ питання", "Свої питання або дії".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Правда або Фейк</span></h3>
+                        <p>Доступні додаткові параметри: "Час на відповідь" та "Кількість питань".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">UNO</span></h3>
+                        <p>Відкриває режим "No Mercy".</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Крокодил</span></h3>
+                        <p>Відкриває категорію слів "18+".</p>
+                    </div>
+                </div>
+
+                <div class="game-settings">
+                    <h2>Оплата і статус</h2>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Статус Premium</span></h3>
+                        <p>У меню показується, чи активний Premium і до якої дати (якщо є термін дії).</p>
+                    </div>
+                    <div class="setting-item">
+                        <h3><span class="setting-title">Покупка або продовження</span></h3>
+                        <p>Є кнопки активації Premium, докупівлі місяця та пакета на 3 місяці.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>19 червня 2025 Truth Ukrainian Botik</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
